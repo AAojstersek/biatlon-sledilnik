@@ -3,7 +3,10 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
+const base = '/biatlon-sledilnik/'
+
 export default defineConfig({
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -13,8 +16,8 @@ export default defineConfig({
         name: 'Biatlon Sledilnik',
         short_name: 'Biatlon',
         description: 'Spremljanje uspešnosti streljanja na biatlonskih tekmah',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#f7f8fa',
