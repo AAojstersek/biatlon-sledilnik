@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IconChevronLeft } from '../common/Icon';
 import styles from './PageHeader.module.css';
 
 interface PageHeaderProps {
@@ -22,7 +23,7 @@ export function PageHeader({ title, subtitle, showBack = false, onBack, actions 
           onClick={() => (onBack ? onBack() : navigate(-1))}
           aria-label="Nazaj"
         >
-          ←
+          <IconChevronLeft size={26} strokeWidth={2} />
         </button>
       )}
       <div className={styles.titles}>

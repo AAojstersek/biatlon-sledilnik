@@ -8,9 +8,9 @@ interface SettingsSectionProps {
 
 export function SettingsSection({ title, children }: SettingsSectionProps) {
   return (
-    <section className={styles.section}>
+    <section className={styles.wrap}>
       <div className={styles.title}>{title}</div>
-      {children}
+      <div className={styles.card}>{children}</div>
     </section>
   );
 }

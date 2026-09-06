@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
 import { CompetitionList } from '../components/competition/CompetitionList';
 import { EmptyState } from '../components/common/EmptyState';
+import { SegmentedControl } from '../components/common/SegmentedControl';
+import { IconPlus, IconTarget } from '../components/common/Icon';
 import { useCategories } from '../hooks/useCategories';
 import { useCompetitions } from '../hooks/useCompetitions';
 import { useAllResults } from '../hooks/useResultsForCompetition';
@@ -16,33 +18,21 @@ export function CompetitionsPage() {
   const results = useAllResults();
 
   const categoriesById = useMemo(() => new Map(categories.map((c) => [c.id, c])), [categories]);
+  const filterOptions = [
+    { value: 'all', label: 'Vse' },
+    ...categories.map((c) => ({ value: c.id, label: c.label })),
+  ];
 
   return (
     <div className={styles.page}>
       <PageHeader title="Tekme" />
       <div className={styles.filterRow}>
-        <button
-          type="button"
-          className={`${styles.filterChip} ${filter === 'all' ? styles.filterActive : ''}`}
-          onClick={() => setFilter('all')}
-        >
-          Vse
-        </button>
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            type="button"
-            className={`${styles.filterChip} ${filter === category.id ? styles.filterActive : ''}`}
-            onClick={() => setFilter(category.id)}
-          >
-            {category.label}
-          </button>
-        ))}
+        <SegmentedControl options={filterOptions} value={filter} onChange={setFilter} />
       </div>
       <div className={styles.content}>
         {competitions.length === 0 ? (
           <EmptyState
-            icon="🎯"
+            icon={<IconTarget size={30} />}
             title="Ni še nobene tekme"
             description="Dodaj prvo tekmo s spodnjim gumbom."
           />
@@ -60,7 +50,7 @@ export function CompetitionsPage() {
         onClick={() => navigate('/competitions/new')}
         aria-label="Nova tekma"
       >
-        +
+        <IconPlus size={26} strokeWidth={2} />
       </button>
     </div>
   );

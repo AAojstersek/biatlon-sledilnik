@@ -1,23 +1,24 @@
 import { NavLink } from 'react-router-dom';
+import { IconChartBar, IconGear, IconTarget } from '../common/Icon';
 import styles from './TabBar.module.css';
 
 const TABS = [
-  { to: '/competitions', label: 'Tekma', icon: '🎯' },
-  { to: '/settings', label: 'Nastavitve', icon: '⚙️' },
-  { to: '/analysis', label: 'Analiza', icon: '📊' },
+  { to: '/competitions', label: 'Tekma', Icon: IconTarget },
+  { to: '/settings', label: 'Nastavitve', Icon: IconGear },
+  { to: '/analysis', label: 'Analiza', Icon: IconChartBar },
 ];
 
 export function TabBar() {
   return (
     <nav className={styles.bar}>
-      {TABS.map((tab) => (
+      {TABS.map(({ to, label, Icon }) => (
         <NavLink
-          key={tab.to}
-          to={tab.to}
+          key={to}
+          to={to}
           className={({ isActive }) => `${styles.tab} ${isActive ? styles.active : ''}`}
         >
-          <span className={styles.icon}>{tab.icon}</span>
-          <span>{tab.label}</span>
+          <Icon size={25} strokeWidth={1.7} />
+          <span>{label}</span>
         </NavLink>
       ))}
     </nav>

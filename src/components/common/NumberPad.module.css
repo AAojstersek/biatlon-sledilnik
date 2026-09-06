@@ -3,24 +3,28 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-2);
   padding: var(--space-3);
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+  background: var(--nav-blur-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-top: 0.5px solid var(--color-border);
 }
 
 .key {
   aspect-ratio: 2 / 1;
   min-height: var(--tap-target-size);
   width: 100%;
-  border: 2px solid var(--color-border);
+  border: none;
   border-radius: var(--radius-md);
   background: var(--color-surface);
+  box-shadow: var(--shadow-key);
   font-size: var(--font-size-lg);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.08s ease, background 0.12s ease;
+  transition: transform 0.08s ease, background 0.12s ease, color 0.12s ease;
 }
 
 .key:active {
@@ -29,6 +33,6 @@
 
 .keySelected {
   background: var(--color-accent);
-  border-color: var(--color-accent);
   color: var(--color-accent-contrast);
+  box-shadow: none;
 }

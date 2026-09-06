@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
+import headerStyles from '../components/layout/PageHeader.module.css';
 import { LiveEntryGrid } from '../components/competition/LiveEntryGrid';
 import { ConfirmDialog } from '../components/common/ConfirmDialog';
 import { EmptyState } from '../components/common/EmptyState';
+import { IconPencil, IconTarget, IconTrash } from '../components/common/Icon';
 import { useCompetition } from '../hooks/useCompetition';
 import { useAllCompetitors } from '../hooks/useCompetitors';
 import { useResultsForCompetition } from '../hooks/useResultsForCompetition';
@@ -19,7 +21,7 @@ export function LiveEntryPage() {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   if (!competition) {
-    return <EmptyState icon="🎯" title="Tekma ne obstaja" />;
+    return <EmptyState icon={<IconTarget size={30} />} title="Tekma ne obstaja" />;
   }
 
   const participants = competition.participantIds
@@ -37,27 +39,19 @@ export function LiveEntryPage() {
           <>
             <button
               type="button"
+              className={headerStyles.actionBtn}
               onClick={() => navigate(`/competitions/${competition.id}/edit`)}
               aria-label="Uredi tekmo"
-              style={{
-                background: 'transparent',
-                border: 'none',
-                fontSize: 18,
-              }}
             >
-              ✎
+              <IconPencil size={20} />
             </button>
             <button
               type="button"
+              className={`${headerStyles.actionBtn} ${headerStyles.actionDanger}`}
               onClick={() => setConfirmDelete(true)}
               aria-label="Izbriši tekmo"
-              style={{
-                background: 'transparent',
-                border: 'none',
-                fontSize: 18,
-              }}
             >
-              🗑
+              <IconTrash size={20} />
             </button>
           </>
         }

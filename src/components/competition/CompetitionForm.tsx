@@ -6,6 +6,7 @@ import { usePresets } from '../../hooks/usePresets';
 import { BoutStructureBuilder } from './BoutStructureBuilder';
 import { ParticipantPicker } from './ParticipantPicker';
 import { Button } from '../common/Button';
+import { SegmentedControl } from '../common/SegmentedControl';
 import styles from './CompetitionForm.module.css';
 
 interface CompetitionFormProps {
@@ -55,23 +56,14 @@ export function CompetitionForm({
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label className={styles.label}>Kategorija</label>
-        <div className={styles.segmented}>
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              type="button"
-              className={`${styles.segmentedOption} ${
-                categoryId === category.id ? styles.segmentedActive : ''
-              }`}
-              onClick={() => {
-                setSelectedCategoryId(category.id);
-                setParticipantIds([]);
-              }}
-            >
-              {category.label}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          options={categories.map((c) => ({ value: c.id, label: c.label }))}
+          value={categoryId}
+          onChange={(value) => {
+            setSelectedCategoryId(value);
+            setParticipantIds([]);
+          }}
+        />
       </div>
 
       <div className={styles.field}>

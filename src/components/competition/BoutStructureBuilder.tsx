@@ -1,6 +1,7 @@
 import type { BoutType, StructurePreset } from '../../types/models';
 import { buildBoutStructure } from '../../utils/boutStructure';
 import { Button } from '../common/Button';
+import { IconPlus, IconX } from '../common/Icon';
 import styles from './BoutStructureBuilder.module.css';
 
 interface BoutStructureBuilderProps {
@@ -38,7 +39,7 @@ export function BoutStructureBuilder({ sequence, onChange, presets }: BoutStruct
       )}
 
       <div className={styles.sequence}>
-        {structure.length === 0 && <span>Dodaj vsaj eno strelanje.</span>}
+        {structure.length === 0 && <span className={styles.hint}>Dodaj vsaj eno strelanje.</span>}
         {structure.map((bout, index) => (
           <span key={index} className={styles.chip}>
             {bout.type}
@@ -49,7 +50,7 @@ export function BoutStructureBuilder({ sequence, onChange, presets }: BoutStruct
               onClick={() => removeAt(index)}
               aria-label="Odstrani"
             >
-              ×
+              <IconX size={13} strokeWidth={2.3} />
             </button>
           </span>
         ))}
@@ -57,10 +58,12 @@ export function BoutStructureBuilder({ sequence, onChange, presets }: BoutStruct
 
       <div className={styles.addRow}>
         <Button type="button" variant="secondary" onClick={() => addBout('L')}>
-          + Leže
+          <IconPlus size={16} strokeWidth={2.2} />
+          Leže
         </Button>
         <Button type="button" variant="secondary" onClick={() => addBout('S')}>
-          + Stoje
+          <IconPlus size={16} strokeWidth={2.2} />
+          Stoje
         </Button>
       </div>
     </div>

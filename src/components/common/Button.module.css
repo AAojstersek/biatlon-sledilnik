@@ -8,12 +8,14 @@
   padding: 12px 20px;
   font-size: var(--font-size-base);
   font-weight: 600;
+  letter-spacing: -0.01em;
   min-height: 48px;
   transition: transform 0.08s ease, opacity 0.15s ease;
 }
 
 .button:active {
   transform: scale(0.97);
+  opacity: 0.85;
 }
 
 .primary {
@@ -22,8 +24,8 @@
 }
 
 .secondary {
-  background: var(--color-surface-alt);
-  color: var(--color-text);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
 }
 
 .danger {
@@ -43,6 +45,6 @@
 }
 
 .button:disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   pointer-events: none;
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCompetitors } from '../../hooks/useCompetitors';
 import { addCompetitor } from '../../db/repositories/competitors';
 import { Button } from '../common/Button';
+import { IconCheckCircle } from '../common/Icon';
 import styles from './ParticipantPicker.module.css';
 
 interface ParticipantPickerProps {
@@ -39,14 +40,17 @@ export function ParticipantPicker({ categoryId, selectedIds, onChange }: Partici
             className={styles.item}
             onClick={() => toggle(competitor.id)}
           >
-            <span
-              className={`${styles.checkbox} ${
-                selectedIds.includes(competitor.id) ? styles.checkboxChecked : ''
-              }`}
-            >
-              {selectedIds.includes(competitor.id) ? '✓' : ''}
-            </span>
             <span className={styles.name}>{competitor.name}</span>
+            <IconCheckCircle
+              size={24}
+              filled={selectedIds.includes(competitor.id)}
+              className={styles.checkIcon}
+              style={{
+                color: selectedIds.includes(competitor.id)
+                  ? 'var(--color-accent)'
+                  : 'var(--color-text-faint)',
+              }}
+            />
           </label>
         ))}
         {competitors.length === 0 && (

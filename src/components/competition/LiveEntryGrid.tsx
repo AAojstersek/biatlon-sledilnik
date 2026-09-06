@@ -4,6 +4,7 @@ import { setResult } from '../../db/repositories/results';
 import { CompetitorRow } from './CompetitorRow';
 import { NumberPad } from '../common/NumberPad';
 import { EmptyState } from '../common/EmptyState';
+import { IconPerson } from '../common/Icon';
 import styles from './LiveEntryGrid.module.css';
 
 interface LiveEntryGridProps {
@@ -54,7 +55,7 @@ export function LiveEntryGrid({ competition, competitors, results }: LiveEntryGr
   if (competitors.length === 0) {
     return (
       <EmptyState
-        icon="🙋"
+        icon={<IconPerson size={30} />}
         title="Ni izbranih tekmovalcev"
         description="Uredi tekmo in dodaj udeležence za vnos rezultatov."
       />

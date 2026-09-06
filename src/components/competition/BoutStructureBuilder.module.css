@@ -15,17 +15,28 @@
   flex-shrink: 0;
   padding: 8px 14px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: none;
+  background: var(--color-surface-alt);
+  color: var(--color-text);
   font-size: var(--font-size-sm);
   font-weight: 600;
+}
+
+.presetChip:active {
+  background: var(--color-surface-alt-strong);
 }
 
 .sequence {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-2);
   min-height: 44px;
+}
+
+.hint {
+  color: var(--color-text-faint);
+  font-size: var(--font-size-sm);
 }
 
 .chip {

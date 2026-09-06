@@ -7,6 +7,8 @@ import {
   setCompetitorArchived,
 } from '../../db/repositories/competitors';
 import { Button } from '../common/Button';
+import { SegmentedControl } from '../common/SegmentedControl';
+import { IconArchive, IconRestore } from '../common/Icon';
 import styles from './RosterManager.module.css';
 
 interface RosterManagerProps {
@@ -30,20 +32,11 @@ export function RosterManager({ categories }: RosterManagerProps) {
 
   return (
     <>
-      <div className={styles.segmented}>
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            type="button"
-            className={`${styles.segmentedOption} ${
-              categoryId === category.id ? styles.segmentedActive : ''
-            }`}
-            onClick={() => setSelectedCategoryId(category.id)}
-          >
-            {category.label}
-          </button>
-        ))}
-      </div>
+      <SegmentedControl
+        options={categories.map((c) => ({ value: c.id, label: c.label }))}
+        value={categoryId}
+        onChange={setSelectedCategoryId}
+      />
 
       <div className={styles.list}>
         {competitors.map((competitor) => (
@@ -63,12 +56,12 @@ export function RosterManager({ categories }: RosterManagerProps) {
                 title={competitor.archived ? 'Obnovi' : 'Arhiviraj'}
                 onClick={() => setCompetitorArchived(competitor.id, !competitor.archived)}
               >
-                {competitor.archived ? '↺' : '🗄'}
+                {competitor.archived ? <IconRestore size={17} /> : <IconArchive size={17} />}
               </button>
             )}
           </div>
         ))}
-        {competitors.length === 0 && <p>Ni tekmovalcev v tej kategoriji.</p>}
+        {competitors.length === 0 && <p className={styles.empty}>Ni tekmovalcev v tej kategoriji.</p>}
       </div>
 
       <div className={styles.addRow}>

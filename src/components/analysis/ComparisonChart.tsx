@@ -1,6 +1,7 @@
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { ComparisonRow } from '../../utils/stats';
 import { EmptyState } from '../common/EmptyState';
+import { IconUsers } from '../common/Icon';
 
 interface ComparisonChartProps {
   rows: ComparisonRow[];
@@ -9,7 +10,7 @@ interface ComparisonChartProps {
 
 export function ComparisonChart({ rows, highlightId }: ComparisonChartProps) {
   if (rows.length === 0) {
-    return <EmptyState icon="👥" title="Ni podatkov za primerjavo" />;
+    return <EmptyState icon={<IconUsers size={30} />} title="Ni podatkov za primerjavo" />;
   }
 
   const data = rows

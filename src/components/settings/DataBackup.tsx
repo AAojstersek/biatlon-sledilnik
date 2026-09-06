@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { exportData, importData } from '../../db/exportImport';
 import { Button } from '../common/Button';
 import { ConfirmDialog } from '../common/ConfirmDialog';
+import { IconDownload, IconUpload } from '../common/Icon';
 
 export function DataBackup() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -29,9 +30,11 @@ export function DataBackup() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
       <Button type="button" variant="secondary" onClick={() => exportData()}>
+        <IconDownload size={19} />
         Izvozi podatke (varnostna kopija)
       </Button>
       <Button type="button" variant="secondary" onClick={() => fileInputRef.current?.click()}>
+        <IconUpload size={19} />
         Uvozi podatke
       </Button>
       <input

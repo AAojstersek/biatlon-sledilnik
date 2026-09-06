@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { formatPct } from '../../utils/format';
 import { EmptyState } from '../common/EmptyState';
+import { IconUsers } from '../common/Icon';
 import styles from './OtherCompetitorsTable.module.css';
 
 export interface OtherCompetitorRow {
@@ -42,7 +43,7 @@ export function OtherCompetitorsTable({ rows }: OtherCompetitorsTableProps) {
   }
 
   if (rows.length === 0) {
-    return <EmptyState icon="👥" title="Ni podatkov o drugih tekmovalcih" />;
+    return <EmptyState icon={<IconUsers size={30} />} title="Ni podatkov o drugih tekmovalcih" />;
   }
 
   return (

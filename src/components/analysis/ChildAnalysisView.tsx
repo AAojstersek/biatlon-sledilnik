@@ -13,6 +13,8 @@ import { TrendChart } from './TrendChart';
 import { PositionBreakdownTable } from './PositionBreakdownTable';
 import { ComparisonChart } from './ComparisonChart';
 import { EmptyState } from '../common/EmptyState';
+import { IconPerson } from '../common/Icon';
+import { SegmentedControl } from '../common/SegmentedControl';
 import { formatDate } from '../../utils/format';
 import styles from './ChildAnalysisView.module.css';
 
@@ -37,7 +39,7 @@ export function ChildAnalysisView({ categoryId }: ChildAnalysisViewProps) {
   );
 
   if (!child) {
-    return <EmptyState icon="🙋" title="Ni nastavljenega otroka v tej kategoriji" />;
+    return <EmptyState icon={<IconPerson size={30} />} title="Ni nastavljenega otroka v tej kategoriji" />;
   }
 
   const childResults = resultsInCategory.filter((r) => r.competitorId === child.id);
@@ -74,22 +76,14 @@ export function ChildAnalysisView({ categoryId }: ChildAnalysisViewProps) {
       <section className={styles.section}>
         <div className={styles.sectionTitle}>Primerjava s sotekmovalci</div>
         <div className={styles.toggleRow}>
-          <button
-            type="button"
-            className={`${styles.toggleBtn} ${comparisonMode === 'time' ? styles.toggleActive : ''}`}
-            onClick={() => setComparisonMode('time')}
-          >
-            Skozi čas
-          </button>
-          <button
-            type="button"
-            className={`${styles.toggleBtn} ${
-              comparisonMode === 'competition' ? styles.toggleActive : ''
-            }`}
-            onClick={() => setComparisonMode('competition')}
-          >
-            Ena tekma
-          </button>
+          <SegmentedControl
+            options={[
+              { value: 'time', label: 'Skozi čas' },
+              { value: 'competition', label: 'Ena tekma' },
+            ]}
+            value={comparisonMode}
+            onChange={(v) => setComparisonMode(v as 'time' | 'competition')}
+          />
           {comparisonMode === 'competition' && (
             <select
               className={styles.select}

@@ -6,27 +6,7 @@
 }
 
 .filterRow {
-  display: flex;
-  gap: var(--space-2);
   padding: var(--space-3) var(--space-4);
-  overflow-x: auto;
-}
-
-.filterChip {
-  flex-shrink: 0;
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-text-muted);
-}
-
-.filterActive {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-accent-contrast);
 }
 
 .content {
@@ -37,16 +17,19 @@
 .fab {
   position: fixed;
   right: var(--space-4);
-  bottom: calc(var(--tab-bar-height) + var(--space-4));
+  bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom) + var(--space-4));
   width: 56px;
   height: 56px;
   border-radius: var(--radius-full);
   background: var(--color-accent);
   color: var(--color-accent-contrast);
   border: none;
-  font-size: 28px;
   box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fab:active {
+  transform: scale(0.94);
 }

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { PageHeader } from '../components/layout/PageHeader';
 import { ChildAnalysisView } from '../components/analysis/ChildAnalysisView';
 import { OtherCompetitorsTable, type OtherCompetitorRow } from '../components/analysis/OtherCompetitorsTable';
+import { SegmentedControl } from '../components/common/SegmentedControl';
 import { useCategories } from '../hooks/useCategories';
 import { useAllCompetitors } from '../hooks/useCompetitors';
 import { useAllResults } from '../hooks/useResultsForCompetition';
@@ -46,16 +47,11 @@ export function AnalysisPage() {
     <div className={styles.page}>
       <PageHeader title="Analiza" />
       <div className={styles.tabs}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            type="button"
-            className={`${styles.tab} ${active?.key === tab.key ? styles.tabActive : ''}`}
-            onClick={() => setActiveKey(tab.key)}
-          >
-            {tab.label}
-          </button>
-        ))}
+        <SegmentedControl
+          options={tabs.map((t) => ({ value: t.key, label: t.label }))}
+          value={active?.key ?? ''}
+          onChange={setActiveKey}
+        />
       </div>
       <div className={styles.content}>
         {active?.kind === 'category' ? (

@@ -11,6 +11,7 @@ import {
 import type { TrendPoint } from '../../utils/stats';
 import { formatDateShort } from '../../utils/format';
 import { EmptyState } from '../common/EmptyState';
+import { IconTrendUp } from '../common/Icon';
 
 interface TrendChartProps {
   points: TrendPoint[];
@@ -18,7 +19,7 @@ interface TrendChartProps {
 
 export function TrendChart({ points }: TrendChartProps) {
   if (points.length === 0) {
-    return <EmptyState icon="📈" title="Še ni podatkov za graf trenda" />;
+    return <EmptyState icon={<IconTrendUp size={30} />} title="Še ni podatkov za graf trenda" />;
   }
 
   const data = points.map((p) => ({
