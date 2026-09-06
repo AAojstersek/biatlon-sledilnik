@@ -22,7 +22,7 @@ function CategoryRow({ category }: { category: Category }) {
 
   return (
     <div className={styles.row}>
-      <span className={styles.label}>{category.kind === 'son' ? 'Sin' : 'Hči'}</span>
+      <span className={styles.label}>{category.kind === 'son' ? 'Izak' : 'Zala'}</span>
       <input
         className={styles.input}
         value={label}

@@ -23,15 +23,15 @@ export async function seedDatabase(): Promise<void> {
     const daughterId = crypto.randomUUID();
 
     await db.categories.bulkAdd([
-      { id: sonId, kind: 'son', label: 'Sin', createdAt: now },
-      { id: daughterId, kind: 'daughter', label: 'Hči', createdAt: now },
+      { id: sonId, kind: 'son', label: 'Izak', createdAt: now },
+      { id: daughterId, kind: 'daughter', label: 'Zala', createdAt: now },
     ]);
 
     await db.competitors.bulkAdd([
       {
         id: crypto.randomUUID(),
         categoryId: sonId,
-        name: 'Sin',
+        name: 'Izak',
         isChild: true,
         archived: false,
         createdAt: now,
@@ -39,7 +39,7 @@ export async function seedDatabase(): Promise<void> {
       {
         id: crypto.randomUUID(),
         categoryId: daughterId,
-        name: 'Hči',
+        name: 'Zala',
         isChild: true,
         archived: false,
         createdAt: now,

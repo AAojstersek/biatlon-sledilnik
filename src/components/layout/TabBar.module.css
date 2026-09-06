@@ -2,12 +2,12 @@
   position: sticky;
   bottom: 0;
   display: flex;
-  height: var(--tab-bar-height);
+  min-height: var(--tab-bar-height);
   background: var(--nav-blur-bg);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-top: 0.5px solid var(--color-border);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
 .tab {
@@ -15,8 +15,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 3px;
+  justify-content: flex-end;
+  gap: 4px;
+  padding-top: 12px;
   background: transparent;
   border: none;
   color: var(--color-text-muted);
