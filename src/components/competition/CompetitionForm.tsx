@@ -19,6 +19,7 @@ interface CompetitionFormProps {
     date: string;
     sequence: BoutType[];
     participantIds: string[];
+    startNumbers: Record<string, string>;
   }) => void;
   submitLabel: string;
 }
@@ -43,13 +44,26 @@ export function CompetitionForm({
     initial ? sequenceFromStructure(initial.boutStructure) : [],
   );
   const [participantIds, setParticipantIds] = useState<string[]>(initial?.participantIds ?? []);
+  const [startNumbers, setStartNumbers] = useState<Record<string, string>>(
+    initial?.startNumbers ?? {},
+  );
 
   const canSubmit = categoryId && name.trim() && sequence.length > 0 && participantIds.length > 0;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!canSubmit) return;
-    onSubmit({ categoryId, name: name.trim(), date, sequence, participantIds });
+    const relevantStartNumbers = Object.fromEntries(
+      Object.entries(startNumbers).filter(([id, value]) => value && participantIds.includes(id)),
+    );
+    onSubmit({
+      categoryId,
+      name: name.trim(),
+      date,
+      sequence,
+      participantIds,
+      startNumbers: relevantStartNumbers,
+    });
   }
 
   return (
@@ -100,10 +114,18 @@ export function CompetitionForm({
       {categoryId && (
         <div className={styles.field}>
           <label className={styles.label}>Udeleženci</label>
+          <p className={styles.hint}>
+            Ob izbranem tekmovalcu lahko vpišeš štartno številko za to tekmo — pomaga pri
+            hitrejšem prepoznavanju med tekmo.
+          </p>
           <ParticipantPicker
             categoryId={categoryId}
             selectedIds={participantIds}
             onChange={setParticipantIds}
+            startNumbers={startNumbers}
+            onStartNumberChange={(id, value) =>
+              setStartNumbers((prev) => ({ ...prev, [id]: value }))
+            }
           />
         </div>
       )}

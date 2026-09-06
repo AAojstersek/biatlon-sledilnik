@@ -9,9 +9,17 @@ interface ParticipantPickerProps {
   categoryId: string;
   selectedIds: string[];
   onChange: (ids: string[]) => void;
+  startNumbers: Record<string, string>;
+  onStartNumberChange: (competitorId: string, value: string) => void;
 }
 
-export function ParticipantPicker({ categoryId, selectedIds, onChange }: ParticipantPickerProps) {
+export function ParticipantPicker({
+  categoryId,
+  selectedIds,
+  onChange,
+  startNumbers,
+  onStartNumberChange,
+}: ParticipantPickerProps) {
   const competitors = useCompetitors(categoryId, false);
   const [newName, setNewName] = useState('');
 
@@ -34,25 +42,32 @@ export function ParticipantPicker({ categoryId, selectedIds, onChange }: Partici
   return (
     <div>
       <div className={styles.list}>
-        {competitors.map((competitor) => (
-          <label
-            key={competitor.id}
-            className={styles.item}
-            onClick={() => toggle(competitor.id)}
-          >
-            <span className={styles.name}>{competitor.name}</span>
-            <IconCheckCircle
-              size={24}
-              filled={selectedIds.includes(competitor.id)}
-              className={styles.checkIcon}
-              style={{
-                color: selectedIds.includes(competitor.id)
-                  ? 'var(--color-accent)'
-                  : 'var(--color-text-faint)',
-              }}
-            />
-          </label>
-        ))}
+        {competitors.map((competitor) => {
+          const selected = selectedIds.includes(competitor.id);
+          return (
+            <label key={competitor.id} className={styles.item} onClick={() => toggle(competitor.id)}>
+              <span className={styles.name}>{competitor.name}</span>
+              {selected && (
+                <input
+                  className={styles.startNumberInput}
+                  placeholder="#"
+                  inputMode="numeric"
+                  value={startNumbers[competitor.id] ?? ''}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) =>
+                    onStartNumberChange(competitor.id, e.target.value.replace(/\D/g, '').slice(0, 4))
+                  }
+                />
+              )}
+              <IconCheckCircle
+                size={24}
+                filled={selected}
+                className={styles.checkIcon}
+                style={{ color: selected ? 'var(--color-accent)' : 'var(--color-text-faint)' }}
+              />
+            </label>
+          );
+        })}
         {competitors.length === 0 && (
           <div className={styles.item}>Ni tekmovalcev — dodaj spodaj.</div>
         )}

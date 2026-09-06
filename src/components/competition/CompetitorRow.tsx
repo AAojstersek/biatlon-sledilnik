@@ -5,6 +5,7 @@ import styles from './CompetitorRow.module.css';
 interface CompetitorRowProps {
   name: string;
   isChild: boolean;
+  startNumber?: string;
   boutStructure: BoutDefinition[];
   valuesByBoutOrder: Map<number, number>;
   selectedBoutOrder: number | undefined;
@@ -14,6 +15,7 @@ interface CompetitorRowProps {
 export function CompetitorRow({
   name,
   isChild,
+  startNumber,
   boutStructure,
   valuesByBoutOrder,
   selectedBoutOrder,
@@ -22,6 +24,7 @@ export function CompetitorRow({
   return (
     <div className={styles.row}>
       <div className={styles.name}>
+        {startNumber && <span className={styles.bib}>{startNumber}</span>}
         {name}
         {isChild && <span className={styles.childBadge}>otrok</span>}
       </div>

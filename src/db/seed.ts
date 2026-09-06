@@ -55,6 +55,7 @@ export async function seedDatabase(): Promise<void> {
       { id: crypto.randomUUID(), name: 'Šprint', boutStructure: sprint },
       { id: crypto.randomUUID(), name: 'Zasledovanje', boutStructure: pursuit },
       { id: crypto.randomUUID(), name: 'Posamično', boutStructure: pursuit },
+      { id: crypto.randomUUID(), name: 'Skupinski start', boutStructure: pursuit },
     ]);
   });
 }

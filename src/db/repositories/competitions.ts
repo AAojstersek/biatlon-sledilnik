@@ -7,6 +7,7 @@ export interface CompetitionInput {
   date: string;
   boutStructure: BoutDefinition[];
   participantIds: string[];
+  startNumbers?: Record<string, string>;
   notes?: string;
 }
 

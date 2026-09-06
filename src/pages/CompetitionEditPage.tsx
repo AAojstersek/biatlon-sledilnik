@@ -24,6 +24,7 @@ export function CompetitionEditPage() {
     date: string;
     sequence: BoutType[];
     participantIds: string[];
+    startNumbers: Record<string, string>;
   }) {
     const boutStructure = buildBoutStructure(input.sequence);
     if (existing) {
@@ -33,6 +34,7 @@ export function CompetitionEditPage() {
         date: input.date,
         boutStructure,
         participantIds: input.participantIds,
+        startNumbers: input.startNumbers,
       });
       navigate(`/competitions/${existing.id}`);
     } else {
@@ -42,24 +44,27 @@ export function CompetitionEditPage() {
         date: input.date,
         boutStructure,
         participantIds: input.participantIds,
+        startNumbers: input.startNumbers,
       });
       navigate(`/competitions/${created.id}`);
     }
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflowY: 'auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <PageHeader
         title={isEdit ? 'Uredi tekmo' : 'Nova tekma'}
         showBack
         onBack={() => navigate(existing ? `/competitions/${existing.id}` : '/competitions')}
       />
-      <CompetitionForm
-        categories={categories}
-        initial={existing}
-        onSubmit={handleSubmit}
-        submitLabel={isEdit ? 'Shrani spremembe' : 'Ustvari tekmo'}
-      />
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
+        <CompetitionForm
+          categories={categories}
+          initial={existing}
+          onSubmit={handleSubmit}
+          submitLabel={isEdit ? 'Shrani spremembe' : 'Ustvari tekmo'}
+        />
+      </div>
     </div>
   );
 }

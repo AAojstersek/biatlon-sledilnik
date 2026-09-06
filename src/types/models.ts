@@ -31,6 +31,9 @@ export interface Competition {
   date: string;
   boutStructure: BoutDefinition[];
   participantIds: string[];
+  /** Bib/start numbers, keyed by competitorId. Specific to this one competition only —
+   *  numbers are reassigned every competition, unlike the competitor's identity. */
+  startNumbers?: Record<string, string>;
   notes?: string;
   createdAt: string;
   updatedAt: string;

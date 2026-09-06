@@ -35,6 +35,18 @@ export function LiveEntryGrid({ competition, competitors, results }: LiveEntryGr
     [competition.boutStructure],
   );
 
+  const sortedCompetitors = useMemo(() => {
+    const startNumbers = competition.startNumbers ?? {};
+    return [...competitors].sort((a, b) => {
+      const na = startNumbers[a.id];
+      const nb = startNumbers[b.id];
+      if (na && nb) return Number(na) - Number(nb);
+      if (na) return -1;
+      if (nb) return 1;
+      return 0;
+    });
+  }, [competitors, competition.startNumbers]);
+
   function nextEmptyBout(competitorId: string, afterOrder: number): number | null {
     const values = valuesByCompetitor.get(competitorId);
     const remaining = sortedBouts.filter(
@@ -69,11 +81,12 @@ export function LiveEntryGrid({ competition, competitors, results }: LiveEntryGr
   return (
     <div className={styles.wrap}>
       <div className={styles.list}>
-        {competitors.map((competitor) => (
+        {sortedCompetitors.map((competitor) => (
           <CompetitorRow
             key={competitor.id}
             name={competitor.name}
             isChild={competitor.isChild}
+            startNumber={competition.startNumbers?.[competitor.id]}
             boutStructure={sortedBouts}
             valuesByBoutOrder={valuesByCompetitor.get(competitor.id) ?? new Map()}
             selectedBoutOrder={
