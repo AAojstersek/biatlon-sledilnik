@@ -1,4 +1,6 @@
 import { db } from './db';
+import type { Category, StructurePreset } from '../types/models';
+import { prefillPointsTables } from './seed';
 
 interface DataDump {
   version: 1;
@@ -59,6 +61,27 @@ export async function importData(file: File): Promise<void> {
     db.results,
     db.structurePresets,
     async () => {
+      // A fresh install seeds its own empty categories; drop those that the backup replaces,
+      // otherwise every category shows up twice. Categories with competitions are always kept.
+      const imported = parsed.categories as Category[];
+      const importedIds = new Set(imported.map((c) => c.id));
+      const importedKinds = new Set(imported.map((c) => c.kind));
+      for (const category of await db.categories.toArray()) {
+        if (importedIds.has(category.id) || !importedKinds.has(category.kind)) continue;
+        const competitionCount = await db.competitions.where('categoryId').equals(category.id).count();
+        if (competitionCount > 0) continue;
+        await db.competitors.where('categoryId').equals(category.id).delete();
+        await db.categories.delete(category.id);
+      }
+
+      // Same for the default presets: keep only the backup's copy of a preset with the same name.
+      const importedPresets = parsed.structurePresets as StructurePreset[];
+      const importedPresetIds = new Set(importedPresets.map((p) => p.id));
+      const importedPresetNames = new Set(importedPresets.map((p) => p.name));
+      await db.structurePresets
+        .filter((p) => !importedPresetIds.has(p.id) && importedPresetNames.has(p.name))
+        .delete();
+
       await db.categories.bulkPut(parsed.categories as never[]);
       await db.competitors.bulkPut(parsed.competitors as never[]);
       await db.competitions.bulkPut(parsed.competitions as never[]);
@@ -66,4 +89,6 @@ export async function importData(file: File): Promise<void> {
       await db.structurePresets.bulkPut(parsed.structurePresets as never[]);
     },
   );
+
+  await prefillPointsTables();
 }

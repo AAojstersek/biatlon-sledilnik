@@ -13,6 +13,10 @@ const pursuit: BoutDefinition[] = [
   { order: 3, type: 'S', occurrence: 2 },
 ];
 
+/** Official points table (1st → 40 … 19th → 2, any other place → 1). */
+export const DEFAULT_POINTS_BY_PLACE = [40, 30, 24, 20, 18, 16, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+export const DEFAULT_POINTS_FOR_OTHER_PLACES = 1;
+
 export async function seedDatabase(): Promise<void> {
   await db.transaction('rw', db.categories, db.competitors, async () => {
     const categoryCount = await db.categories.count();
@@ -57,5 +61,21 @@ export async function seedDatabase(): Promise<void> {
       { id: crypto.randomUUID(), name: 'Posamično', boutStructure: pursuit },
       { id: crypto.randomUUID(), name: 'Skupinski start', boutStructure: pursuit },
     ]);
+  });
+
+  await prefillPointsTables();
+}
+
+/** Gives categories that never had a points table saved the default one. A table the user
+ *  saved (even an empty one) is left untouched. */
+export async function prefillPointsTables(): Promise<void> {
+  await db.transaction('rw', db.categories, async () => {
+    const withoutTable = await db.categories.filter((c) => c.pointsByPlace === undefined).toArray();
+    for (const category of withoutTable) {
+      await db.categories.update(category.id, {
+        pointsByPlace: DEFAULT_POINTS_BY_PLACE,
+        pointsForOtherPlaces: DEFAULT_POINTS_FOR_OTHER_PLACES,
+      });
+    }
   });
 }

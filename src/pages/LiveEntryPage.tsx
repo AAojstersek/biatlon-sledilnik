@@ -5,7 +5,7 @@ import headerStyles from '../components/layout/PageHeader.module.css';
 import { LiveEntryGrid } from '../components/competition/LiveEntryGrid';
 import { ConfirmDialog } from '../components/common/ConfirmDialog';
 import { EmptyState } from '../components/common/EmptyState';
-import { IconPencil, IconTarget, IconTrash } from '../components/common/Icon';
+import { IconPencil, IconTarget, IconTrash, IconTrophy } from '../components/common/Icon';
 import { useCompetition } from '../hooks/useCompetition';
 import { useAllCompetitors } from '../hooks/useCompetitors';
 import { useResultsForCompetition } from '../hooks/useResultsForCompetition';
@@ -37,6 +37,14 @@ export function LiveEntryPage() {
         onBack={() => navigate('/competitions')}
         actions={
           <>
+            <button
+              type="button"
+              className={headerStyles.actionBtn}
+              onClick={() => navigate(`/competitions/${competition.id}/placements`)}
+              aria-label="Uvrstitve"
+            >
+              <IconTrophy size={20} />
+            </button>
             <button
               type="button"
               className={headerStyles.actionBtn}

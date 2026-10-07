@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Competition, Competitor, Result } from '../../types/models';
 import { setResult } from '../../db/repositories/results';
+import { sortByStartNumber } from '../../utils/startNumbers';
 import { CompetitorRow } from './CompetitorRow';
 import { NumberPad } from '../common/NumberPad';
 import { EmptyState } from '../common/EmptyState';
@@ -35,17 +36,10 @@ export function LiveEntryGrid({ competition, competitors, results }: LiveEntryGr
     [competition.boutStructure],
   );
 
-  const sortedCompetitors = useMemo(() => {
-    const startNumbers = competition.startNumbers ?? {};
-    return [...competitors].sort((a, b) => {
-      const na = startNumbers[a.id];
-      const nb = startNumbers[b.id];
-      if (na && nb) return Number(na) - Number(nb);
-      if (na) return -1;
-      if (nb) return 1;
-      return 0;
-    });
-  }, [competitors, competition.startNumbers]);
+  const sortedCompetitors = useMemo(
+    () => sortByStartNumber(competitors, competition.startNumbers),
+    [competitors, competition.startNumbers],
+  );
 
   function nextEmptyBout(competitorId: string, afterOrder: number): number | null {
     const values = valuesByCompetitor.get(competitorId);

@@ -3,6 +3,7 @@ import { SettingsSection } from '../components/settings/SettingsSection';
 import { CategorySettings } from '../components/settings/CategorySettings';
 import { RosterManager } from '../components/settings/RosterManager';
 import { PresetManager } from '../components/settings/PresetManager';
+import { PointsTableEditor } from '../components/settings/PointsTableEditor';
 import { DataBackup } from '../components/settings/DataBackup';
 import { useCategories } from '../hooks/useCategories';
 import styles from './SettingsPage.module.css';
@@ -24,6 +25,10 @@ export function SettingsPage() {
 
         <SettingsSection title="Predloge struktur strelanj">
           <PresetManager />
+        </SettingsSection>
+
+        <SettingsSection title="Točke po mestih">
+          <PointsTableEditor categories={categories} />
         </SettingsSection>
 
         <SettingsSection title="Podatki">

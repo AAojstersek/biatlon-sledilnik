@@ -186,3 +186,13 @@ export function IconTrendUp({ size = 24, ...rest }: IconProps) {
     </svg>
   );
 }
+
+export function IconTrophy({ size = 24, ...rest }: IconProps) {
+  return (
+    <svg {...base(size)} {...rest}>
+      <path d="M7.5 4h9v5.5a4.5 4.5 0 0 1-9 0V4Z" />
+      <path d="M7.5 6H4.5v1.5A3 3 0 0 0 7.6 10.5M16.5 6h3v1.5a3 3 0 0 1-3.1 3" />
+      <path d="M12 14v3.5M8.5 20h7M9.5 17.5h5" />
+    </svg>
+  );
+}

@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { IconChartBar, IconGear, IconTarget } from '../common/Icon';
+import { IconChartBar, IconGear, IconTarget, IconTrophy } from '../common/Icon';
 import styles from './TabBar.module.css';
 
 const TABS = [
   { to: '/competitions', label: 'Tekma', Icon: IconTarget },
   { to: '/settings', label: 'Nastavitve', Icon: IconGear },
   { to: '/analysis', label: 'Analiza', Icon: IconChartBar },
+  { to: '/standings', label: 'Lestvica', Icon: IconTrophy },
 ];
 
 export function TabBar() {

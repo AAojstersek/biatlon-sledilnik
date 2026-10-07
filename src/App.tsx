@@ -4,11 +4,15 @@ import { TabBar } from './components/layout/TabBar';
 import { CompetitionsPage } from './pages/CompetitionsPage';
 import { CompetitionEditPage } from './pages/CompetitionEditPage';
 import { LiveEntryPage } from './pages/LiveEntryPage';
+import { PlacementsPage } from './pages/PlacementsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { seedDatabase } from './db/seed';
 
 const AnalysisPage = lazy(() =>
   import('./pages/AnalysisPage').then((m) => ({ default: m.AnalysisPage })),
+);
+const StandingsPage = lazy(() =>
+  import('./pages/StandingsPage').then((m) => ({ default: m.StandingsPage })),
 );
 
 function MainLayout() {
@@ -44,10 +48,19 @@ export default function App() {
               </Suspense>
             }
           />
+          <Route
+            path="/standings"
+            element={
+              <Suspense fallback={null}>
+                <StandingsPage />
+              </Suspense>
+            }
+          />
         </Route>
         <Route path="/competitions/new" element={<CompetitionEditPage />} />
         <Route path="/competitions/:id" element={<LiveEntryPage />} />
         <Route path="/competitions/:id/edit" element={<CompetitionEditPage />} />
+        <Route path="/competitions/:id/placements" element={<PlacementsPage />} />
       </Routes>
     </HashRouter>
   );

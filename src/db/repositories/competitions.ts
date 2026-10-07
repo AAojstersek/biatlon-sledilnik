@@ -8,6 +8,7 @@ export interface CompetitionInput {
   boutStructure: BoutDefinition[];
   participantIds: string[];
   startNumbers?: Record<string, string>;
+  placements?: Record<string, number>;
   notes?: string;
 }
 
@@ -28,6 +29,13 @@ export async function updateCompetition(
   input: Partial<CompetitionInput>,
 ): Promise<void> {
   await db.competitions.update(id, { ...input, updatedAt: new Date().toISOString() });
+}
+
+export async function setPlacements(
+  id: string,
+  placements: Record<string, number>,
+): Promise<void> {
+  await updateCompetition(id, { placements });
 }
 
 export async function deleteCompetition(id: string): Promise<void> {
