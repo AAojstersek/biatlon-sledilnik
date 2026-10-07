@@ -5,14 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/biatlon-sledilnik/favicon.svg" />
     <link rel="apple-touch-icon" href="/biatlon-sledilnik/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="theme-color" content="#f5f5f7" />
+    <script>
+      // Apply the saved theme before first paint (see src/utils/theme.ts).
+      try {
+        var t = localStorage.getItem('biatlon-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Biatlon" />
     <meta name="description" content="Spremljanje uspešnosti streljanja na biatlonskih tekmah" />
     <title>Biatlon Sledilnik</title>
-    <script type="module" crossorigin src="/biatlon-sledilnik/assets/index-fUuDfU01.js"></script>
-    <link rel="stylesheet" crossorigin href="/biatlon-sledilnik/assets/index-BMaABIN_.css">
+    <script type="module" crossorigin src="/biatlon-sledilnik/assets/index-DHEuz43-.js"></script>
+    <link rel="stylesheet" crossorigin href="/biatlon-sledilnik/assets/index-BWTm8DUZ.css">
   <link rel="manifest" href="/biatlon-sledilnik/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/biatlon-sledilnik/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
