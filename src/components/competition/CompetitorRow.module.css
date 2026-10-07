@@ -1,9 +1,13 @@
 .row {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
+  gap: 6px;
+  padding: 10px 14px;
   border-bottom: 0.5px solid var(--color-border-soft);
+}
+
+.row:last-child {
+  border-bottom: none;
 }
 
 .name {
@@ -39,5 +43,8 @@
   display: flex;
   gap: var(--space-2);
   overflow-x: auto;
-  padding-bottom: 2px;
+  /* Room for the selection ring, which the scroll container would otherwise clip; the negative
+     margin keeps the fields exactly where they were. */
+  padding: 3px 3px 2px;
+  margin: -3px -3px 0;
 }

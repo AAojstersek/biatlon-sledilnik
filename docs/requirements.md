@@ -69,3 +69,45 @@ Scenarij: Uporabnik ima v aplikaciji že vnesene kategorije, tekmovalce, tekme, 
 - Samodejni izračun mesta iz časov ali strelanja.
 - Lestvica čez obe kategoriji skupaj.
 - Izvoz lestvice (PDF/CSV).
+
+---
+
+# Requirements v2 — Prenova videza (slog GO koledar / Budget)
+
+Owner: Maja (PM) · Source: decisions-log D17–D18
+
+## Purpose
+Aplikacija naj bo videti in se obnaša kot uporabnikovi aplikaciji GO koledar in Budget, da so vse tri ena družina. Vnos strelov ostane enak. Glavna naprava je iPhone 16 Pro.
+
+## Features
+
+### V1 — Vizualni jezik GO · **must-have**
+Scenarij: uporabnik odpre Biatlon takoj po GO koledarju; barve, pisava, glava, kartice in spodnja vrstica so videti iz iste družine.
+- AC-V1.1 Barve, pisava, zaobljenosti in sence se ujemajo z GO (svetla in temna tema), vključno s temno modrim poudarkom (v temni temi belim).
+- AC-V1.2 Vsi glavni zavihki imajo velik naslov kot GO; podstrani (tekma, uvrstitve, urejanje) imajo prosojno glavo kot GO.
+- AC-V1.3 Seznami in nastavitve so v zaobljenih karticah z razmikom od roba, kot v GO.
+- AC-V1.4 Spodnja vrstica z zavihki je kot v GO (prosojna, neizbrani zavihki sivi, izbrani v barvi besedila).
+- AC-V1.5 Gumbi za dodajanje in brisanje v nastavitvah sledijo vzorcu GO (zelen »+«, rdeč »–«, brisanje v dveh dotikih ali s potrditvijo).
+- AC-V1.6 Barva statusne vrstice ustreza novi barvni shemi; ikona aplikacije ostane nespremenjena (D20).
+
+### V2 — Vnos strelov ostane enak · **must-have**
+- AC-V2.1 Polja strelišč (L1, S1 …) imajo enako velikost (min. 58 × 58), obliko in razporeditev kot zdaj.
+- AC-V2.2 Obarvanje polj je enako: 0 zgrešenih zeleno, ≥ 1 rdeče, izbrano polje z modrim obročem.
+- AC-V2.3 Številčnica (0–5) ima enako velikost tipk, razporeditev in obnašanje (izbrana tipka modra, samodejni skok na naslednje prazno strelišče).
+- AC-V2.4 Vnos traja enako število dotikov kot zdaj.
+
+### V3 — Prilagoditev za iPhone 16 Pro · **must-have**
+- AC-V3.1 Pri širini 393 pt in višini 852 pt ni vodoravnega drsenja na nobenem zaslonu.
+- AC-V3.2 Vsebina se ne skriva pod Dynamic Islandom ali pod spodnjim indikatorjem (varni robovi upoštevani), tudi kot nameščena aplikacija na začetnem zaslonu.
+- AC-V3.3 Na zaslonu vnosa strelov je pri 4 streliščih vidnih vsaj 5 tekmovalcev, ko je številčnica odprta.
+- AC-V3.4 Vsi gumbi in dotikalne površine so vsaj 44 × 44 pt.
+- AC-V3.5 Polja za vnos besedila ne povzročijo povečave strani ob dotiku.
+
+### V4 — Izbira teme · **must-have** (D19)
+- AC-V4.1 V Nastavitvah je izbira Svetla / Temna / Samodejno kot v GO; izbira se zapomni na napravi.
+
+## Out of scope
+- Nove funkcije ali spremembe obnašanja (razen V4).
+- Velikost pisave A−/A+ iz GO.
+- Namizni pogled.
+- Spremembe podatkov — vsi vnosi ostanejo (F5 velja naprej).

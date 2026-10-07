@@ -15,7 +15,7 @@ export function PageHeader({ title, subtitle, showBack = false, onBack, actions 
   const navigate = useNavigate();
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${showBack ? '' : styles.large}`}>
       {showBack && (
         <button
           type="button"

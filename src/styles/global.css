@@ -14,7 +14,8 @@ html, body {
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
   font-size: var(--font-size-base);
   line-height: 1.35;
   letter-spacing: -0.01em;
@@ -35,6 +36,10 @@ h1, h2, h3, p {
   margin: 0;
 }
 
+button, a, select, input, label {
+  touch-action: manipulation;
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -42,9 +47,16 @@ button {
   touch-action: manipulation;
 }
 
-input, select {
+input, select, textarea {
   font: inherit;
   color: inherit;
+}
+
+/* iOS zooms into any focused field under 16 px; keep every field at least 16 px there. */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea {
+    font-size: max(16px, 1em) !important;
+  }
 }
 
 a {

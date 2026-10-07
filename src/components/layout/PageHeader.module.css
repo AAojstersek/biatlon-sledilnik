@@ -5,16 +5,29 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  padding-top: calc(var(--space-3) + env(safe-area-inset-top));
+  padding: var(--space-2) var(--space-4);
+  padding-top: calc(var(--space-2) + env(safe-area-inset-top));
   min-height: 52px;
   background: var(--nav-blur-bg);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 0.5px solid var(--color-border);
+  border-bottom: 0.5px solid var(--color-border-soft);
+}
+
+/* Tab pages: GO large title. */
+.large {
+  padding-top: calc(var(--space-4) + env(safe-area-inset-top));
+  padding-bottom: var(--space-2);
+}
+
+.large .title {
+  font-size: var(--font-size-title);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
 .back {
+  position: relative;
   background: transparent;
   border: none;
   width: 36px;
@@ -22,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent);
+  color: var(--color-link);
   flex-shrink: 0;
   margin-left: -8px;
 }
@@ -53,22 +66,32 @@
 .actions {
   flex-shrink: 0;
   display: flex;
-  gap: var(--space-1);
+  gap: var(--space-2);
 }
 
+/* Round fill buttons like GO .arrow; the ::after extends the hit area to 44 px. */
 .actionBtn {
-  background: transparent;
+  position: relative;
+  background: var(--color-surface-alt);
   border: none;
+  border-radius: var(--radius-full);
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.actionBtn::after,
+.back::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
 }
 
 .actionBtn:active {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .actionDanger {

@@ -75,20 +75,22 @@ export function LiveEntryGrid({ competition, competitors, results }: LiveEntryGr
   return (
     <div className={styles.wrap}>
       <div className={styles.list}>
-        {sortedCompetitors.map((competitor) => (
-          <CompetitorRow
-            key={competitor.id}
-            name={competitor.name}
-            isChild={competitor.isChild}
-            startNumber={competition.startNumbers?.[competitor.id]}
-            boutStructure={sortedBouts}
-            valuesByBoutOrder={valuesByCompetitor.get(competitor.id) ?? new Map()}
-            selectedBoutOrder={
-              selection?.competitorId === competitor.id ? selection.boutOrder : undefined
-            }
-            onSelectBout={(order) => setSelection({ competitorId: competitor.id, boutOrder: order })}
-          />
-        ))}
+        <div className={styles.card}>
+          {sortedCompetitors.map((competitor) => (
+            <CompetitorRow
+              key={competitor.id}
+              name={competitor.name}
+              isChild={competitor.isChild}
+              startNumber={competition.startNumbers?.[competitor.id]}
+              boutStructure={sortedBouts}
+              valuesByBoutOrder={valuesByCompetitor.get(competitor.id) ?? new Map()}
+              selectedBoutOrder={
+                selection?.competitorId === competitor.id ? selection.boutOrder : undefined
+              }
+              onSelectBout={(order) => setSelection({ competitorId: competitor.id, boutOrder: order })}
+            />
+          ))}
+        </div>
       </div>
       {selection ? (
         <div className={styles.padDock}>

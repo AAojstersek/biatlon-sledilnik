@@ -51,6 +51,7 @@
 }
 
 .chipRemove {
+  position: relative;
   background: transparent;
   border: none;
   color: var(--color-accent);
@@ -69,4 +70,11 @@
 
 .addRow > button {
   flex: 1;
+}
+
+/* 44 px hit area around the small × */
+.chipRemove::after {
+  content: '';
+  position: absolute;
+  inset: -11px;
 }

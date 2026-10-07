@@ -4,12 +4,12 @@
   justify-content: center;
   gap: var(--space-2);
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   padding: 12px 20px;
   font-size: var(--font-size-base);
   font-weight: 600;
   letter-spacing: -0.01em;
-  min-height: 48px;
+  min-height: 46px;
   transition: transform 0.08s ease, opacity 0.15s ease;
 }
 
@@ -24,8 +24,8 @@
 }
 
 .secondary {
-  background: var(--color-accent-soft);
-  color: var(--color-accent);
+  background: var(--color-surface-alt);
+  color: var(--color-text);
 }
 
 .danger {
@@ -35,7 +35,7 @@
 
 .ghost {
   background: transparent;
-  color: var(--color-accent);
+  color: var(--color-link);
   padding: 8px 12px;
   min-height: auto;
 }

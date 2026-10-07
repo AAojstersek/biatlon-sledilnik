@@ -13,8 +13,9 @@
   width: 64px;
   height: 64px;
   border-radius: var(--radius-full);
-  background: var(--color-surface-alt);
-  color: var(--color-text-faint);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-muted);
   display: flex;
   align-items: center;
   justify-content: center;

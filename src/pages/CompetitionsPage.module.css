@@ -3,31 +3,36 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  position: relative;
 }
 
 .filterRow {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-3) var(--space-3);
 }
 
 .content {
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 96px;
 }
 
+/* GO FAB: round, navy, soft lift. */
 .fab {
   position: fixed;
-  right: var(--space-4);
+  right: 18px;
   bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom) + var(--space-4));
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   border-radius: var(--radius-full);
   background: var(--color-accent);
   color: var(--color-accent-contrast);
   border: none;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
 }
 
 .fab:active {

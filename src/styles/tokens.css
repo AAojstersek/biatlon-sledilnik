@@ -1,29 +1,48 @@
+/* Visual language shared with GO koledar and Budget (see docs/design-spec.md, v2). */
 :root {
-  --color-bg: #f2f2f7;
+  --color-bg: #f5f5f7;
   --color-surface: #ffffff;
-  --color-surface-alt: rgba(120, 120, 128, 0.12);
-  --color-surface-alt-strong: rgba(120, 120, 128, 0.2);
-  --color-border: rgba(60, 60, 67, 0.29);
-  --color-border-soft: rgba(60, 60, 67, 0.13);
-  --color-text: #1c1c1e;
-  --color-text-muted: rgba(60, 60, 67, 0.6);
-  --color-text-faint: rgba(60, 60, 67, 0.4);
-  --color-accent: #007aff;
+  --color-surface-alt: rgba(118, 118, 128, 0.12);
+  --color-surface-alt-strong: rgba(118, 118, 128, 0.2);
+  --color-border: rgba(60, 60, 67, 0.2);
+  --color-border-soft: rgba(60, 60, 67, 0.11);
+  --color-text: #1d1d1f;
+  --color-text-muted: #6e6e73;
+  --color-text-faint: #aeaeb2;
+  --color-accent: #1e2a3a;
   --color-accent-contrast: #ffffff;
-  --color-accent-soft: rgba(0, 122, 255, 0.12);
+  --color-accent-soft: rgba(30, 42, 58, 0.08);
+  --color-link: #0a84ff;
   --color-success: #34c759;
   --color-success-soft: rgba(52, 199, 89, 0.12);
-  --color-danger: #ff3b30;
-  --color-danger-soft: rgba(255, 59, 48, 0.12);
+  --color-danger: #e63946;
+  --color-danger-soft: rgba(230, 57, 70, 0.12);
   --color-warning: #ff9500;
   --color-warning-soft: rgba(255, 149, 0, 0.14);
-  --color-empty: rgba(120, 120, 128, 0.16);
+  --color-empty: rgba(118, 118, 128, 0.16);
 
-  --nav-blur-bg: rgba(242, 242, 247, 0.82);
+  --nav-blur-bg: rgba(255, 255, 255, 0.74);
+  --segment-active: #ffffff;
+
+  /* Shot entry (bout fields + number pad) is frozen: these keep the pre-redesign colours so the
+     new palette never changes how shots are entered. */
+  --shot-empty: rgba(120, 120, 128, 0.12);
+  --shot-empty-text: rgba(60, 60, 67, 0.6);
+  --shot-ok: #34c759;
+  --shot-ok-soft: rgba(52, 199, 89, 0.12);
+  --shot-miss: #ff3b30;
+  --shot-miss-soft: rgba(255, 59, 48, 0.12);
+  --shot-select: #007aff;
+  --shot-select-contrast: #ffffff;
+  --shot-key-bg: #ffffff;
+  --shot-key-text: #1c1c1e;
+  --shot-radius: 14px;
+  --shot-pad-bg: rgba(242, 242, 247, 0.82);
 
   --radius-sm: 10px;
   --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-lg: 14px;
+  --radius-sheet: 18px;
   --radius-full: 999px;
 
   --space-1: 4px;
@@ -38,41 +57,90 @@
   --font-size-md: 17px;
   --font-size-lg: 22px;
   --font-size-xl: 30px;
+  --font-size-title: 32px;
 
   --tap-target-size: 58px;
   --tab-bar-height: 68px;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-key: 0 1px 1px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(0, 0, 0, 0.03);
 
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --color-bg: #000000;
     --color-surface: #1c1c1e;
-    --color-surface-alt: rgba(120, 120, 128, 0.24);
-    --color-surface-alt-strong: rgba(120, 120, 128, 0.32);
-    --color-border: rgba(84, 84, 88, 0.6);
-    --color-border-soft: rgba(84, 84, 88, 0.36);
-    --color-text: #f2f2f7;
-    --color-text-muted: rgba(235, 235, 245, 0.6);
-    --color-text-faint: rgba(235, 235, 245, 0.4);
-    --color-accent: #0a84ff;
-    --color-accent-contrast: #ffffff;
-    --color-accent-soft: rgba(10, 132, 255, 0.18);
+    --color-surface-alt: rgba(118, 118, 128, 0.24);
+    --color-surface-alt-strong: rgba(118, 118, 128, 0.32);
+    --color-border: rgba(84, 84, 88, 0.7);
+    --color-border-soft: rgba(84, 84, 88, 0.42);
+    --color-text: #f5f5f7;
+    --color-text-muted: #98989d;
+    --color-text-faint: #636366;
+    --color-accent: #f5f5f7;
+    --color-accent-contrast: #000000;
+    --color-accent-soft: rgba(245, 245, 247, 0.12);
     --color-success: #30d158;
     --color-success-soft: rgba(48, 209, 88, 0.16);
     --color-danger: #ff453a;
     --color-danger-soft: rgba(255, 69, 58, 0.18);
     --color-warning: #ff9f0a;
     --color-warning-soft: rgba(255, 159, 10, 0.18);
-    --color-empty: rgba(120, 120, 128, 0.24);
-
-    --nav-blur-bg: rgba(0, 0, 0, 0.78);
-
+    --color-empty: rgba(118, 118, 128, 0.24);
+    --nav-blur-bg: rgba(28, 28, 30, 0.74);
+    --segment-active: #636366;
+    --shot-empty: rgba(120, 120, 128, 0.24);
+    --shot-empty-text: rgba(235, 235, 245, 0.6);
+    --shot-ok: #30d158;
+    --shot-ok-soft: rgba(48, 209, 88, 0.16);
+    --shot-miss: #ff453a;
+    --shot-miss-soft: rgba(255, 69, 58, 0.18);
+    --shot-select: #0a84ff;
+    --shot-key-bg: #1c1c1e;
+    --shot-key-text: #f2f2f7;
+    --shot-pad-bg: rgba(0, 0, 0, 0.78);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #000000;
+  --color-surface: #1c1c1e;
+  --color-surface-alt: rgba(118, 118, 128, 0.24);
+  --color-surface-alt-strong: rgba(118, 118, 128, 0.32);
+  --color-border: rgba(84, 84, 88, 0.7);
+  --color-border-soft: rgba(84, 84, 88, 0.42);
+  --color-text: #f5f5f7;
+  --color-text-muted: #98989d;
+  --color-text-faint: #636366;
+  --color-accent: #f5f5f7;
+  --color-accent-contrast: #000000;
+  --color-accent-soft: rgba(245, 245, 247, 0.12);
+  --color-success: #30d158;
+  --color-success-soft: rgba(48, 209, 88, 0.16);
+  --color-danger: #ff453a;
+  --color-danger-soft: rgba(255, 69, 58, 0.18);
+  --color-warning: #ff9f0a;
+  --color-warning-soft: rgba(255, 159, 10, 0.18);
+  --color-empty: rgba(118, 118, 128, 0.24);
+  --nav-blur-bg: rgba(28, 28, 30, 0.74);
+  --segment-active: #636366;
+  --shot-empty: rgba(120, 120, 128, 0.24);
+  --shot-empty-text: rgba(235, 235, 245, 0.6);
+  --shot-ok: #30d158;
+  --shot-ok-soft: rgba(48, 209, 88, 0.16);
+  --shot-miss: #ff453a;
+  --shot-miss-soft: rgba(255, 69, 58, 0.18);
+  --shot-select: #0a84ff;
+  --shot-key-bg: #1c1c1e;
+  --shot-key-text: #f2f2f7;
+  --shot-pad-bg: rgba(0, 0, 0, 0.78);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
 }

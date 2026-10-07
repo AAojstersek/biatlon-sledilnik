@@ -58,3 +58,12 @@ Tok podatkov: Dexie → `useLiveQuery` hooki (`useCompetition(s)`, `useCategorie
 ## Verification hooks za QA
 - `npm run build`, `npm run lint`.
 - Test ohranitve podatkov: pred posodobitvijo izvozi podatke, po posodobitvi primerjaj število zapisov in Analizo.
+
+---
+
+# Architecture v2 — Prenova videza
+
+Owner: Rok · No data-model, schema or dependency change (F5 still holds).
+- Theme: `data-theme="light|dark"` on `<html>`; absent = Samodejno (follows the system). Stored per device in `localStorage['biatlon-theme']` (try/catch; failure = Samodejno). An inline script in `index.html` applies it before first paint to avoid a flash. `meta[name=theme-color]` follows the resolved theme.
+- Tokens stay CSS custom properties in `src/styles/tokens.css`, structured like GO (`:root` light, dark under `@media (prefers-color-scheme: dark) :root:not([data-theme=light])` and `:root[data-theme=dark]`).
+- Shot-entry components read only `--shot-*` tokens (constraint: no other token may change their look).

@@ -6,11 +6,12 @@
 }
 
 .tabs {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3);
 }
 
 .content {
   flex: 1;
   overflow-y: auto;
-  padding: 0 var(--space-4) var(--space-4);
+  padding: 0 var(--space-3) var(--space-6);
+  overscroll-behavior: contain;
 }

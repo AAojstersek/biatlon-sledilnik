@@ -1,0 +1,78 @@
+.add {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-link);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.add::before {
+  content: '+';
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: #34c759;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.add:disabled {
+  opacity: 0.4;
+}
+
+.del {
+  position: relative;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: none;
+  display: grid;
+  place-items: center;
+}
+
+/* 44 px hit area around the 22 px glyph. */
+.del::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+}
+
+.del span {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-danger);
+  display: grid;
+  place-items: center;
+}
+
+.del span::before {
+  content: '';
+  width: 11px;
+  height: 2px;
+  border-radius: 1px;
+  background: #ffffff;
+}
+
+.armed {
+  width: auto;
+  padding: 4px 12px;
+  background: var(--color-danger);
+  color: #ffffff;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}

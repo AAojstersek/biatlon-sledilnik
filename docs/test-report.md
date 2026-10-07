@@ -55,3 +55,23 @@ Method: production build (`vite build` + `vite preview`) driven by Playwright/Ch
 3. **[FIXED — D16]** Found on retest: default presets were duplicated in the same way (Šprint ×2 …). After the fix, an existing preset is removed only when the backup has a preset with the same name.
 
 Regression after the fixes: full suite rerun against data written by the previous build — 43/43 PASS, F5 data identical.
+
+---
+
+# Test report v2 — Prenova videza
+
+Owner: Eva (QA) · Date: 2026-10-07 · Against: requirements v2 (V1–V4). Production build in Chromium, 393 pt wide. For V3, the safe areas (top 62 pt, bottom 34 pt) were subtracted from the viewport, because Chromium has no `env(safe-area-*)`.
+
+| AC | Result | Note |
+|---|---|---|
+| V1.1–V1.4 | PASS | GO tokens (light and dark), large titles on tab pages, frosted sub-page headers, inset cards, GO tab bar (screenshots reviewed). |
+| V1.5 | PASS | »Dodaj mesto« uses GO's green +. Delete is GO's red −; a preset needs a second tap on »Izbriši«. |
+| V1.6 | PASS | theme-color #F5F5F7 / #000 follows the theme; app icon unchanged (D20). |
+| V2.1–V2.4 | PASS | Bout fields and number pad read only the frozen `--shot-*` tokens, which hold the old values; 58 pt, radius 14 and layout unchanged. The selection ring is no longer clipped at the left edge. Entry flow unchanged (43/43 functional checks). |
+| V3.1 | PASS | No page-level horizontal scroll on any screen. Only the preset chip row scrolls sideways, as before. |
+| V3.2 | PASS (by construction) | Header uses `env(safe-area-inset-top)`, tab bar and number pad use `env(safe-area-inset-bottom)`. **Confirm on the device.** |
+| V3.3 | PASS | 5 competitors × 4 bouts fully visible above the open number pad (5th row ends at 602, pad starts at 605). |
+| V3.4 | PASS | Small glyphs (back, header actions, ×, −) have extended 44 pt hit areas. |
+| V3.5 | PASS (by construction) | iOS-only rule keeps every field at ≥ 16 px. **Confirm on the device.** |
+| V4.1 | PASS | Samodejno / Svetla / Temna; persists across a reload; status-bar colour follows it. |
+| F1–F5 regression | PASS | 43/43 checks on data written by the pre-feature build; data identical. |

@@ -1,10 +1,10 @@
 .bout {
   min-width: var(--tap-target-size);
   min-height: var(--tap-target-size);
-  border-radius: var(--radius-md);
+  border-radius: var(--shot-radius);
   border: none;
-  background: var(--color-surface-alt);
-  color: var(--color-text-muted);
+  background: var(--shot-empty);
+  color: var(--shot-empty-text);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,15 +30,15 @@
 }
 
 .filled {
-  background: var(--color-success-soft);
-  color: var(--color-success);
+  background: var(--shot-ok-soft);
+  color: var(--shot-ok);
 }
 
 .filledMiss {
-  background: var(--color-danger-soft);
-  color: var(--color-danger);
+  background: var(--shot-miss-soft);
+  color: var(--shot-miss);
 }
 
 .selected {
-  box-shadow: 0 0 0 2.5px var(--color-accent);
+  box-shadow: 0 0 0 2.5px var(--shot-select);
 }

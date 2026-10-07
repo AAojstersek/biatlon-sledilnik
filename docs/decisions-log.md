@@ -48,3 +48,14 @@ Deviations/gaps:
 - D15 — On import, an existing category is removed (with its competitors) when: its id is not in the backup, the backup has a category of the same kind, and it has no competitions. Categories with competitions are never removed. Also: categories imported without a points table get the default table right after import (fixes test-report finding 2).
 - D16 — Same root cause for presets: on import, an existing preset is removed if its id is not in the backup but the backup has a preset with the same name.
 - QA retest after D15/D16: all criteria PASS (43/43 UI checks + import scenarios). Awaiting user approval at checkpoint 3.
+
+---
+
+## 2026-10-07 — New goal: prenova videza v slogu GO koledar / Budget
+User: redesign the app in the visual style of GO koledar and Budget (~/Documents/code/GO, ~/Documents/code/Budget). Shot-entry fields, the entry method (number pad), their colouring and button sizes stay exactly as they are. Optimise the layout for iPhone 16 Pro (the main device).
+- D17 — Reference = GO design-spec §4 (phone), §11 (tokens) and `GO/web/src/styles.css`; Budget reuses the same language.
+- D18 — Frozen: BoutButton (58 px, radius 14, green/red tint, blue selection ring) and NumberPad (2:1 keys, 58 px min, selected key blue) — size, colours, behaviour. The new accent colour must not leak into them.
+- Routing: Maja → requirements (checkpoint 1) → Nina (design-spec + mockup) + Rok (no architecture change expected) → checkpoint 2 → Ana → Eva → checkpoint 3.
+- Checkpoint 1 (v2) approved. D19 — V4 (izbira teme) becomes must-have. D20 — App icon stays as is; only the status-bar/theme colour follows the new palette (AC-V1.6 narrowed).
+- D21 — User: skip the mockup/checkpoint-2 review; implement directly and commit so the user reviews the redesign on the phone (user deploys). Checkpoint 2 is replaced by on-device review.
+- QA v2: all V1–V4 PASS; V3.2 and V3.5 to be confirmed on the iPhone (user review per D21).

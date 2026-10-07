@@ -69,3 +69,32 @@ Stanja:
 - Značke startne številke in »otrok« so iste kot v živem vnosu.
 - Validacija številk enaka na obeh zaslonih: rdeča obroba + onemogočen gumb za shranjevanje; nobenih pojavnih oken za napake.
 - Format točk: »N t.« v vrsticah, golo število v tabeli.
+
+---
+
+# Design spec v2 — Prenova videza (slog GO)
+
+Owner: Nina (UI/UX) · Input: requirements v2 (V1–V4), GO design-spec §4/§11, GO/web/src/styles.css
+
+## Tokens (as GO §11)
+Light: bg #F5F5F7 · surface #FFF · fill rgba(118,118,128,.12) · ink #1D1D1F · ink-2 #6E6E73 · ink-3 #AEAEB2 · accent #1E2A3A (on-accent #FFF) · danger #E63946 · link #0A84FF · glass rgba(255,255,255,.74).
+Dark: bg #000 · surface #1C1C1E · fill rgba(118,118,128,.24) · ink #F5F5F7 · ink-2 #98989D · ink-3 #636366 · accent #F5F5F7 (on-accent #000) · glass rgba(28,28,30,.74).
+Radii: cards 14, sheets/dialogs 18, pills full, inputs 10. Soft shadow on cards. System font.
+
+## Frozen — shot entry (V2)
+Bout fields and the number pad keep their own tokens with today's values (`--shot-*`): empty grey, 0 = green #34C759, ≥1 = red #FF3B30, selection ring and selected key blue #007AFF (dark: #30D158 / #FF453A / #0A84FF). Size 58, radius 14, value 22 px, layout and behaviour unchanged. The new navy accent never reaches them.
+
+## Screens
+- **Tab pages** (Tekme, Nastavitve, Analiza, Lestvica): frosted header with a **large title 32 px** (GO `.bigtitle`), respecting the top safe area.
+- **Sub-pages** (tekma, uvrstitve, uredi/nova tekma): frosted compact header, back chevron in link blue, title 17 px + subtitle; actions as round 36 px fill buttons (44 px hit area) like GO `.arrow`.
+- **Tab bar**: frosted, inactive ink-3, active ink, icon 24, label 10.5 px, no underline; bottom padding max(22 px, safe area).
+- **Lists**: inset grouped cards (12 px side margin, radius 14), hairline separators.
+- **Tekme**: grouped list of competitions; category as a grey pill; FAB 54 px navy, round.
+- **Vnos strelov**: competitor rows inside one inset card; rows and fields otherwise unchanged; number pad dock frosted as today.
+- **Buttons**: pills. Primary = navy (white in dark), secondary = fill + ink. Min height 44.
+- **Add / delete (V1.5)**: »+ Dodaj …« as GO `.add` (link-blue text with a green round +). Delete as GO `.del` (red round −); deleting saved data (preset) needs a second tap on the armed red »Izbriši« pill; removing a draft row (points table) is one tap.
+- **Dialogs**: centered card radius 18, surface background, link-blue actions, danger red.
+- **Nastavitve → Prikaz** (V4): segmented Samodejno · Svetla · Temna, first card.
+
+## iPhone 16 Pro (V3)
+Viewport 393 × 852 pt, safe areas top 62 / bottom 34. All inputs ≥ 16 px font on iOS (no focus zoom). Touch targets ≥ 44 pt. Vnos strelov: row padding tightened so 5 competitors × 4 bouts fit above the open number pad.

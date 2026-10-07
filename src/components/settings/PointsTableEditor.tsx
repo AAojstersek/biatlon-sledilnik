@@ -5,7 +5,7 @@ import { parsePoints } from '../../utils/standings';
 import { SegmentedControl } from '../common/SegmentedControl';
 import { ConfirmDialog } from '../common/ConfirmDialog';
 import { Button } from '../common/Button';
-import { IconTrash } from '../common/Icon';
+import { AddButton, DeleteButton } from '../common/ListActions';
 import styles from './PointsTableEditor.module.css';
 
 interface PointsTableEditorProps {
@@ -98,14 +98,10 @@ export function PointsTableEditor({ categories }: PointsTableEditorProps) {
                   }
                 />
                 {i === values.length - 1 ? (
-                  <button
-                    type="button"
-                    className={styles.iconBtn}
-                    onClick={() => setValues(values.slice(0, -1))}
-                    aria-label="Odstrani zadnje mesto"
-                  >
-                    <IconTrash size={17} />
-                  </button>
+                  <DeleteButton
+                    label="Odstrani zadnje mesto"
+                    onDelete={() => setValues(values.slice(0, -1))}
+                  />
                 ) : (
                   <span className={styles.iconSpacer} />
                 )}
@@ -115,9 +111,7 @@ export function PointsTableEditor({ categories }: PointsTableEditorProps) {
         </div>
       )}
 
-      <Button type="button" variant="secondary" onClick={() => setValues([...values, ''])}>
-        + Dodaj mesto
-      </Button>
+      <AddButton onClick={() => setValues([...values, ''])}>Dodaj mesto</AddButton>
 
       <div className={styles.item}>
         <span className={styles.place}>Ostala mesta</span>
@@ -136,7 +130,6 @@ export function PointsTableEditor({ categories }: PointsTableEditorProps) {
       <div className={styles.saveRow}>
         <Button
           type="button"
-          variant="secondary"
           disabled={hasInvalid || !isDirty}
           onClick={handleSave}
         >

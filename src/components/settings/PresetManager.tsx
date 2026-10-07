@@ -6,7 +6,7 @@ import { buildBoutStructure } from '../../utils/boutStructure';
 import { boutLabel } from '../../types/models';
 import { BoutStructureBuilder } from '../competition/BoutStructureBuilder';
 import { Button } from '../common/Button';
-import { IconTrash } from '../common/Icon';
+import { DeleteButton } from '../common/ListActions';
 import styles from './PresetManager.module.css';
 
 export function PresetManager() {
@@ -33,14 +33,11 @@ export function PresetManager() {
                 {preset.boutStructure.map((b) => boutLabel(b)).join(' · ')}
               </div>
             </div>
-            <button
-              type="button"
-              className={styles.iconBtn}
-              onClick={() => deletePreset(preset.id)}
-              aria-label="Izbriši predlogo"
-            >
-              <IconTrash size={17} />
-            </button>
+            <DeleteButton
+              label={`Izbriši predlogo ${preset.name}`}
+              confirm
+              onDelete={() => deletePreset(preset.id)}
+            />
           </div>
         ))}
         {presets.length === 0 && <p className={styles.empty}>Ni shranjenih predlog.</p>}

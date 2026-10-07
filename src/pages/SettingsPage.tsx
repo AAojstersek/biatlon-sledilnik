@@ -5,6 +5,7 @@ import { RosterManager } from '../components/settings/RosterManager';
 import { PresetManager } from '../components/settings/PresetManager';
 import { PointsTableEditor } from '../components/settings/PointsTableEditor';
 import { DataBackup } from '../components/settings/DataBackup';
+import { ThemeSettings } from '../components/settings/ThemeSettings';
 import { useCategories } from '../hooks/useCategories';
 import styles from './SettingsPage.module.css';
 
@@ -15,6 +16,10 @@ export function SettingsPage() {
     <div className={styles.page}>
       <PageHeader title="Nastavitve" />
       <div className={styles.content}>
+        <SettingsSection title="Prikaz">
+          <ThemeSettings />
+        </SettingsSection>
+
         <SettingsSection title="Kategoriji">
           <CategorySettings categories={categories} />
         </SettingsSection>
